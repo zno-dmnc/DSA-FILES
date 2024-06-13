@@ -1,0 +1,2 @@
+	printf("\n");
+	visualize(list);

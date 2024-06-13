@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.erd": "json",
+        "*.vuerd": "json",
+        "stacklinkedlist.h": "c",
+        "stackdoubly.h": "c"
+    }
+}
