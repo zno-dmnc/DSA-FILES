@@ -3,6 +3,13 @@
 #include "classWithdraw.h"
 #include "classWithdraw.c"
 
+/*
+    Author: Zenno Dominic Abellana
+    Program Description: When a student enrolls, the student gets inserted in the Class. If the class is already
+    full, the student gets waitlisted and is queued for enrollment. If a student withdraws in the class, the first
+    student from the queue gets inserted in the class.
+*/
+
 #define MAX 5
 
 int main(){
