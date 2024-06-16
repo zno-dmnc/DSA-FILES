@@ -3,6 +3,7 @@
         "*.erd": "json",
         "*.vuerd": "json",
         "stacklinkedlist.h": "c",
-        "stackdoubly.h": "c"
+        "stackdoubly.h": "c",
+        "string.h": "c"
     }
 }

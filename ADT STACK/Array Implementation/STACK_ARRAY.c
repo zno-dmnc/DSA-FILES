@@ -72,7 +72,7 @@ bool isEmpty(StackArrayList s){
 	return s.top == -1? true: false;
 }
 bool isFull(StackArrayList s){
-	return s.top==MAX? true: false;
+	return (s.top==MAX-1) ? true: false;
 }
 
 // others
