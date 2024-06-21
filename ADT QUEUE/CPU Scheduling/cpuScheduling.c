@@ -117,6 +117,61 @@ void fcfs(Queue* q){
         enqueue(q, val);
     }
 }
-// void ganttChart(Queue q){
+void ganttChart(Queue q){
+    Queue temp;
+    initQueue(&temp);
 
-// }
+    Process val = front(q), tempv;
+    printf("\n====GANTT CHART====\n");
+    printf("%d\t", val.arrivalTime);
+    dequeue(&q);
+    enqueue(&temp, val);
+    printf(" \t%d\t", val.completionTime);
+    while(!isEmpty(q)){
+        tempv = front(q);
+        if(val.completionTime==tempv.executionTime){
+            printf(" \t%d\t", tempv.completionTime);
+        } else{
+            printf("\t%d\t \t%d\t", tempv.executionTime, tempv.completionTime);
+        }
+        dequeue(&q);
+        enqueue(&temp, tempv);
+        val = tempv;
+    }
+
+    while(!isEmpty(temp)){
+        tempv = front(temp);
+        dequeue(&temp);
+        enqueue(&q, tempv);
+    }
+
+    gui(q);
+}
+
+void gui(Queue q){
+    Queue temp;
+    initQueue(&temp);
+
+    Process val = front(q), tempv;
+    printf("\n|\t");
+    dequeue(&q);
+    enqueue(&temp, val);
+    printf("%c\t|\t", val.name);
+    while(!isEmpty(q)){
+        tempv = front(q);
+        if(val.completionTime==tempv.executionTime){
+            printf("%c\t|\t", tempv.name);
+        } else{
+            printf("(idle)\t|\t%c\t|\t", tempv.name);
+        }
+        dequeue(&q);
+        enqueue(&temp, tempv);
+        val = tempv;
+    }
+
+    while(!isEmpty(temp)){
+        tempv = front(temp);
+        dequeue(&temp);
+        enqueue(&q, tempv);
+    }
+}

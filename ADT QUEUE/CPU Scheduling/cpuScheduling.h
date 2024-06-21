@@ -33,7 +33,8 @@ void insertSorted(NodePtr *h, Process p);
 void populateQueue(Queue* q, NodePtr h);
 void fcfs(Queue* q);
 void display(NodePtr p);
-// void ganttChart(Queue q);
+void ganttChart(Queue q);
+void gui(Queue q);
 
 
 #endif

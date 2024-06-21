@@ -29,6 +29,6 @@ int main(){
     populateQueue(&q, head);
     fcfs(&q);
     displayProcess(q);
-    // ganttChart(q);
+    ganttChart(q);
 
 }
