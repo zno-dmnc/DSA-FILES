@@ -44,7 +44,7 @@ void insertOpenDict(Dictionary *d, Queue *acl, Person p);
 bool searchOpenDict(Dictionary d, Name n);
 void updateOpenDict(Dictionary *d, Name n, Person p);
 void updateName(Dictionary *d, Queue *acl, Name n, Person p);
-void deleteOpenDict(Dictionary *d, Name n);
+void deleteOpenDict(Dictionary *d, Queue *acl, Name n);
 void visualize(Dictionary d);
 void resizeDictionary(Dictionary *d, Queue *acl);
 void initQueue(Queue *q);

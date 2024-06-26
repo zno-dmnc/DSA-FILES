@@ -97,10 +97,6 @@ void updateOpenDict(Dictionary *d, Name n, Person p){
 }
 void updateName(Dictionary *d, Queue *acl, Name n, Person p){
 
-    deleteOpenDict(d, n);
-    insertOpenDict(d, acl, p);
-}
-void deleteOpenDict(Dictionary *d, Name n){
     NodePtr temp;
     if(searchOpenDict(*d, n)){
         int key = hashFunction(n.lName, d->size);
@@ -118,11 +114,83 @@ void deleteOpenDict(Dictionary *d, Name n){
         printf("Person Not Found");
     }
 
+    Queue tempq;
+    Person val;
+    initQueue(&tempq);
+
+    while(!isEmpty(*acl)){
+        val = front(*acl);
+        dequeue(acl);
+        if((strcmp(val.name.fName, n.fName)==0 && strcmp(val.name.lName, n.lName)==0)){
+            val = p;
+        }
+        enqueue(&tempq, val);
+    }
+
+    while(!isEmpty(tempq)){
+        val = front(tempq);
+        dequeue(&tempq);
+        enqueue(acl, val);
+    }
+
+
+    NodePtr newP = malloc(sizeof(struct node));
+    if(newP!=NULL){
+        newP->p = p;
+        int key = hashFunction(p.name.lName, d->size);
+        NodePtr *trav = &d->List[key];
+        while(*trav!=NULL && strcmp((*trav)->p.name.lName, p.name.lName)<0){
+            trav = &(*trav)->next;
+        }
+        newP->next = *trav;
+        *trav = newP;
+        printf("UPDATED INFORMATION\n");
+            printf("Name: %s %s\n", (*trav)->p.name.fName, (*trav)->p.name.lName);
+            printf("Address: %s, %s, %s, %s %d\t",(*trav)->p.address.street, (*trav)->p.address.barangay, (*trav)->p.address.city, (*trav)->p.address.province, (*trav)->p.address.zipCode);
+    }
+}
+void deleteOpenDict(Dictionary *d, Queue *acl, Name n){
+    NodePtr temp;
+    if(searchOpenDict(*d, n)){
+        int key = hashFunction(n.lName, d->size);
+        NodePtr *trav = &d->List[key];
+        while(*trav!=NULL && (strcmp((*trav)->p.name.fName, n.fName)!=0 || strcmp((*trav)->p.name.lName, n.lName)!=0)){
+            trav = &(*trav)->next;
+        }
+        if(*trav!=NULL){
+            temp = *trav;
+            *trav = temp->next;
+            free(temp);
+        }
+
+    }else{
+        printf("Person Not Found");
+    }
+
+    Queue tempq;
+    initQueue(&tempq);
+    Person val;
+
+    while(!isEmpty(*acl)){
+        val = front(*acl);
+        dequeue(acl);
+        if((strcmp(val.name.fName, n.fName)!=0 || strcmp(val.name.lName, n.lName)!=0)){
+            enqueue(&tempq, val);
+        }
+    }
+    while(!isEmpty(tempq)){
+        val = front(tempq);
+        dequeue(&tempq);
+        enqueue(acl, val);
+    }
+
+    d->count--;
+
 }
 void visualize(Dictionary d){
     int i;
     NodePtr trav;
-
+    printf("COUNT: %d", d.count);
     for(i=0;i<d.size;i++){
         trav = d.List[i];
         printf("INDEX: %d\n", i);

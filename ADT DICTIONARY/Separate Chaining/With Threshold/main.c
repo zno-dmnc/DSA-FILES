@@ -15,6 +15,7 @@ int main(){
     Person p4 = {{"Jethro", "Engutan"}, {"San Jose", "Cogon", "Tagb", "Bohol", 6300}};
     Person update = {{"Rem", "Random"}, {"Lindaville", "Dao", "Tagb", "Bohol", 6300}};
     Name n = {"Rem", "Marigomen"};
+    Name del = {"Random", "Montera"};
     Person p5 = {{"Stella", "Salde"}, {"San Jose", "Cogon", "Tagb", "Bohol", 6300}};
     Person p6 = {{"kaelle", "Gravador"}, {"San Jose", "Cogon", "Tagb", "Bohol", 6300}};
     Person p7 = {{"Ethan", "Montera"}, {"San Jose", "Cogon", "Tagb", "Bohol", 6300}};
@@ -30,13 +31,13 @@ int main(){
     insertOpenDict(&d, &acl, p7);
     visualize(d);
     insertOpenDict(&d, &acl, p8);
-    printf("===============\n\n");
+    printf("\n===============\n\n");
     visualize(d);
 
     // updateOpenDict(&d, n, update);
-    // deleteOpenDict(&d, n);
-    // updateName(&d, n, update);
+    deleteOpenDict(&d, &acl, del);
+    updateName(&d, &acl, n, update);
 
-    // printf("===============\n\n");
-    // visualize(d);
+    printf("\n===============\n\n");
+    visualize(d);
 }
