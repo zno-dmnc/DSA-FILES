@@ -141,29 +141,30 @@ BST front(Queue q){
 	return q.front->n;
 }
 
-// void bfs(BST t){
-// 	if(t!=NULL){
-// 		Queue q;
-// 		initQueue(&q);
-// 		BST s;
-// 		enqueue(&q, t);
-// 		while(!isEmpty(q)){
-// 			s = front(q);
-// 			printf("Name: %s\n", s->data.prodName);
-// 			printf("Price: %.2f\n", s->data.prodPrice);
-// 			printf("Quantity: %d\n", s->data.prodQty);
-// 			printf("Expiry Date: %d - %d - %d\n\n", s->data.expDate.month, s->data.expDate.day, s->data.expDate.year);
-// 			dequeue(&q);
+void bfs(BST t){
+	if(t!=NULL){
+		Queue q;
+		initQueue(&q);
+		BST s;
+		enqueue(&q, t);
+		while(!isEmpty(q)){
+			s = front(q);
+			printf("Name: %s\n", s->data.prodName);
+			printf("Price: %.2f\n", s->data.prodPrice);
+			printf("Quantity: %d\n", s->data.prodQty);
+			printf("Expiry Date: %d - %d - %d\n\n", s->data.expDate.month, s->data.expDate.day, s->data.expDate.year);
+			dequeue(&q);
 
-// 			if(s->left!=NULL){
-// 				enqueue(&q, s->left);
-// 			}else if(s->right!=NULL){
-// 				enqueue(&q, s->right);
-// 			}
-// 		}
-// 	}
+			if(s->left!=NULL){
+				enqueue(&q, s->left);
+			}
+			if(s->right!=NULL){
+				enqueue(&q, s->right);
+			}
+		}
+	}
 	
-// }
+}
 
 
 void traverse(BST t){
@@ -234,7 +235,7 @@ int main(){
     insert(&tree, p4); 
 
     printf("Traversing:\n");
-	traverse(tree);
+	bfs(tree);
     printf("Checking if CreamStick is a member:\n");
     if(isMember(&tree, p1)){
 		printf("True\n");
@@ -247,6 +248,7 @@ int main(){
 	}else{
 		printf("Person not found!\n");
 	}
+	bfs(tree);
     // traverse(tree);
     
     
